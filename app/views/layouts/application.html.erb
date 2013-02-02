@@ -112,7 +112,7 @@
 
       <% end %>
 
-      <% @json = @spots.to_gmaps4rails %>
+      <% @json = (@spots || []).to_gmaps4rails %>
 
       <div class="map_wrapper" style="display:none">
         <%= gmaps( "markers" => { "data" => @json } ) %>
