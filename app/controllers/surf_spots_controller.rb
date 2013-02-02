@@ -1,12 +1,21 @@
 class SurfSpotsController < ApplicationController
-
   def index
-    # look up
-    @spots = []
+    reset_session
+
+    if params[:location]
+      session[:location] = { :name => "Santa Barbara, CA" }.merge( params[:location] )
+    end
+
+    if session[:location]
+      @spots = SurfSpot.find_by_lat_long( session[:latitude], session[:longitude] )
+    end
   end
 
   def show
-    # @spot = Spot.find(params[:id])
-    @spot = { :name => "Chris' fav spot" }
+    @spot = SurfSpot.find(params[:id])
+  end
+
+  def reset
+    reset_session
   end
 end
