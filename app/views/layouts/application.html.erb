@@ -28,10 +28,30 @@
 
     $(document).ready(function() {
       $("#feedbackLink").click(function() {
-        console.log('clicked')
         $("#feedback").reveal();
       });
+
+      $(window).resize( function(){
+        resizeMap();
+      });
+
+
+      Gmaps.map.callback = function() {
+        resizeMap();
+        $('.map_wrapper').fadeIn();
+      };
     });
+
+    function resizeMap()
+    {
+      var width = $("#side_bar").width() - 15;
+
+      $(".map_container").width(width);
+      $("#map").width(width);
+
+      google.maps.event.trigger(Gmaps.map.map, "resize");
+      Gmaps.map.adjustMapToBounds();
+    }
   </script>
 </head>
 <body>
@@ -77,7 +97,7 @@
   </div>
 
   <div>
-    <div class="four mobile-one columns">
+    <div class="four mobile-one columns" id="side_bar">
       <% if @spots %>
         <h5>Surf spots near you:</h5>
 
@@ -90,10 +110,13 @@
           <% end %>
         </ul>
 
-      <% @json = @spots.to_gmaps4rails %>
-      <%= gmaps4rails(@json) %>
-
       <% end %>
+
+      <% @json = @spots.to_gmaps4rails %>
+
+      <div class="map_wrapper" style="display:none">
+        <%= gmaps( "markers" => { "data" => @json } ) %>
+      </div>
     </div>
 
     <div class="eight mobile-three columns">
