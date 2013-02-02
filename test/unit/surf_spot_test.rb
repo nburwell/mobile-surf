@@ -80,7 +80,7 @@ class SurfSpotTest < ActiveSupport::TestCase
         :msw_name => "Point-Arena-Surf-Report"
       )
 
-      assert_equal ["sb"], SurfSpot.near([ 34.2330908, -119.100],20).map{|ss| ss.name}
+      assert_equal ["sb"],                SurfSpot.near([ 34.2330908, -119.100],20).map{|ss| ss.name}
       assert_equal ["sb", "Point Arena"], SurfSpot.near([ 34.2330908, -119.100],500).map{|ss| ss.name}
 
     end
