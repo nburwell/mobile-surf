@@ -1,10 +1,6 @@
 class SurfSpot < ActiveRecord::Base
   attr_accessible :latitude, :longitude, :name, :msw_id, :msw_name, :address, :msw_widget_embed
 
-  # TODO - Remove this when Vu has updated the models...
-  def msw_widget_embed
-    msw_widget_embed_template % [ msw_name, msw_id, name ]
-  end
 
   acts_as_gmappable
 
