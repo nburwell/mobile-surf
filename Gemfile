@@ -10,6 +10,11 @@ group :development, :test do
   gem 'system_timer'
 end
 
+group :production do
+  # gems specifically for Heroku go here
+  gem "pg"
+end
+
 gem 'json'
 
 # Gems used only for assets and not required
