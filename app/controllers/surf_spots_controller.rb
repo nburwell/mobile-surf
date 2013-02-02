@@ -4,6 +4,9 @@ class SurfSpotsController < ApplicationController
   before_filter :find_spots
 
   def index
+    if session[:geo]
+      @swell_chart = SwellChart.near( session[:geo][:location], 1000 ).limit(1).first
+    end
   end
 
   def show

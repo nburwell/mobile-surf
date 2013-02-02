@@ -31,8 +31,8 @@ namespace :data do
     end
   end
 
-  task :swell_charts do
-    SWELL_CHART = [
+  task :swell_charts  => :environment do
+    SWELL_CHARTS = [
       {
         :url => "http://cdip.ucsd.edu/recent/model_images/sf.png",
         :latitude0	 =>	38.908798,
@@ -55,7 +55,7 @@ namespace :data do
         :longitude1	 =>	-120.4579409,
       },
       {
-        :url =>"http://cdip.ucsd.edu/recent/model_images/sb_channel.png1",
+        :url =>"http://cdip.ucsd.edu/recent/model_images/sb_channel.png",
         :latitude0	=>	34.5772065,
         :longitude0	 =>	-120.6507263,
         :latitude1	=>	34.1975048,
@@ -84,11 +84,13 @@ namespace :data do
       }
     ]
 
+    SwellChart.destroy_all
     SWELL_CHARTS.each do |v|
+      puts v[:url]
       SwellChart.create!(
         :name      => "",
         :url       => v[:url],
-        :latitude  => (v[:lattitude0] + v[:lattitude1]) / 2,
+        :latitude  => (v[:latitude0] + v[:latitude1]) / 2,
         :longitude => (v[:longitude0] + v[:longitude1]) / 2
       )
     end

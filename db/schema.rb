@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202094842) do
+ActiveRecord::Schema.define(:version => 20130202102151) do
 
   create_table "surf_spots", :force => true do |t|
     t.float    "latitude"
@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(:version => 20130202094842) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.string   "address",    :default => ""
   end
 
 end
