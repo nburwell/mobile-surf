@@ -19,7 +19,7 @@ class Surf.Locator
     @pos = position.coords
 
     console.log(@pos)
-    window.location = window.location + "?location[latitude]=" + @pos.latitude + "&location[longitude]=" + @pos.longitude
+    window.location = window.location + "?location[]=" + @pos.latitude + "&location[]=" + @pos.longitude
 
   error: (err) ->
     console.log("Error callback #{err.message}")

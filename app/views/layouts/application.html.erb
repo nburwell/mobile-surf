@@ -24,7 +24,7 @@
   <%= csrf_meta_tags %>
 
   <script type="text/javascript">
-    var locator = new Surf.Locator( <%= session[:location].to_json.html_safe %> );
+    var locator = new Surf.Locator( <%= session[:geo].to_json.html_safe %> );
   </script>
 </head>
 <body>
@@ -51,12 +51,12 @@
     </section>
   </nav>
 
-  <div>
+  <div style="margin-top: .5em">
     <div class="twelve columns">
       <%# raise session[:location].inspect %>
-      <% if session[:location] %>
+      <% if session[:geo] %>
         <div class="alert-box" style="font-size: 1.3em">
-          Your Location: <%= session[:location][:name] %>
+          Your Location: <%= session[:geo][:name] %>
           <!--<a href="" class="close">&times;</a>-->
         </div>
       <% else %>

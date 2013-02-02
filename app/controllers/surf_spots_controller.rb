@@ -3,10 +3,10 @@ class SurfSpotsController < ApplicationController
     reset_session
 
     if params[:location]
-      session[:location] = { :name => "Santa Barbara, CA" }.merge( params[:location] )
+      session[:geo] = { :name => "Santa Barbara, CA", :location => params[:location] }
     end
 
-    if session[:location]
+    if session[:geo]
       @spots = SurfSpot.find_by_lat_long( session[:latitude], session[:longitude] )
     end
   end
