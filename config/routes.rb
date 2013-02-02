@@ -11,7 +11,11 @@ Hackathon2013b::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
+  match 'sessions/clear' => 'sessions#clear'
+
   resources :surf_spots, :team
+
+
 
   # Sample resource route with options:
   #   resources :products do

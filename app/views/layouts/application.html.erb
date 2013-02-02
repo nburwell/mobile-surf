@@ -25,6 +25,13 @@
 
   <script type="text/javascript">
     var locator = new Surf.Locator( <%= session[:geo].to_json.html_safe %> );
+
+    $(document).ready(function() {
+      $("#feedbackLink").click(function() {
+        console.log('clicked')
+        $("#feedback").reveal();
+      });
+    });
   </script>
 </head>
 <body>
@@ -40,12 +47,12 @@
 
       <ul class="right">
         <li class="search">
-          <form class="collapse">
-            <input type="text" placeholder="Zip code...">
+          <form class="collapse" action="">
+            <input type="text" placeholder="Address..." name="location" value="<%= %>">
             <button type="submit" class="secondary radius button">Go</button>
           </form>
         </li>
-        <li><a href="#">Feedback</a></li>
+        <li><a href="#" id="feedbackLink">Feedback</a></li>
         <li><%= link_to "Meet the Team", { :controller => :team, :action => :index } %></li>
       </ul>
     </section>
@@ -56,7 +63,9 @@
       <%# raise session[:location].inspect %>
       <% if session[:geo] %>
         <div class="alert-box" style="font-size: 1.3em">
-          Your Location: <%= session[:geo][:name] %>
+          Location: <%= session[:geo][:name] %>
+          &nbsp;
+          <%= link_to "reset", { :controller => :sessions, :action => :clear }, { :style => "color: white; text-decoration: underline"} %>
           <!--<a href="" class="close">&times;</a>-->
         </div>
       <% else %>
@@ -74,10 +83,9 @@
 
         <ul class="nav-bar vertical">
           <% @spots.each do |spot| %>
-            <li class=""> <!-- add "active" class -->
-              <%= link_to spot.name, { :controller => :surf_spots, :action => :show, :id => spot.id } %>
-              <br />
-              <%= spot.distance_to session[:geo][:location], SurfSpotsController::MAX_DISTANCE %>
+            <li class="has-flyout <%= 'active' if spot == @spot %>"> <!-- add "active" class -->
+              <%= link_to "#{spot.name} <span class='mileage'>#{number_with_precision(spot.distance_to(session[:geo][:location], SurfSpotsController::MAX_DISTANCE), :precision => 1, :delimiter => ",")} mi</span>".html_safe,
+                          { :controller => :surf_spots, :action => :show, :id => spot.id } %>
             </li>
           <% end %>
         </ul>
@@ -92,6 +100,32 @@
       <%= yield %>
     </div>
   </div>
+
+  <div id="feedback" class="reveal-modal large">
+    <h2>Give us feedback</h2>
+    <p class="lead">We want your comments.</p>
+    <form>
+      <div class="row">
+        <div class="two mobile-one columns">
+          <label class="right inline">Name:</label>
+        </div>
+        <div class="ten mobile-three columns">
+          <input type="text" placeholder="e.g. Home" class="eight" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="two mobile-one columns">
+          <label class="right inline">Comments:</label>
+        </div>
+        <div class="ten mobile-three columns">
+          <textarea class="eight" rows="6"></textarea>
+        </div>
+      </div>
+    </form>
+    <a class="close-reveal-modal">&#215;</a>
+  </div>
+
   <%= yield :scripts %>
+
 </body>
 </html>
