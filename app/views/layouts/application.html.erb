@@ -46,17 +46,38 @@
     </section>
   </nav>
 
-  <div class="row display">
+  <div>
     <div class="twelve columns">
-      Location: <a href="#change_location"></a>
+      <div class="alert-box">
+        Location: <a href="#change_location"></a>
+        <!--<a href="" class="close">&times;</a>-->
+      </div>
     </div>
+  </div>
 
+  <div>
     <div class="four mobile-one columns">
-      spots list
+      <div class="panel">
+
+        <% if @spots %>
+          <h5>Nearest locations to you:</h5>
+
+          <ul class="nav-bar vertical">
+            <%= @spots.each do |spot| %>
+              <li class=""> <!-- add "active" class -->
+                <%= link_to spot.name, { :controller => :surf_spots, :action => :show, :id => spot.id } %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+
+      </div>
     </div>
 
     <div class="eight mobile-three columns">
-      swell chart
+      <div class="panel">
+        <%= yield %>
+      </div>
     </div>
   </div>
 </body>
