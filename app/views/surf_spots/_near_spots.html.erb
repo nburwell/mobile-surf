@@ -1,4 +1,4 @@
-<% if @spots %>
+<% if @spots && @spots.any? %>
   <h5>Surf spots near you:</h5>
 
   <ul class="nav-bar vertical">
@@ -27,4 +27,7 @@
       <%= gmaps( "markers" => { "data" => @json } ) %>
     </div>
   <% end %>
+
+<% else %>
+  <h5>Sorry, no surf spots found near you.</h5>
 <% end %>
