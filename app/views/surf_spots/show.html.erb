@@ -1,3 +1,9 @@
 <h1><%= @spot.name %></h1>
 
+<a class="success button"
+   style="margin-bottom: 1em"
+   href="https://maps.google.com/?saddr=<%= session[:geo][:name] %>&daddr=<%= @spot.address %>" target="_blank">
+  Get Driving Directions
+</a>
+
 <%= @spot.msw_widget_embed.html_safe %>

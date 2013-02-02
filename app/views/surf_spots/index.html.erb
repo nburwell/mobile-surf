@@ -1,5 +1,7 @@
-<% if session[:geo] %>
+<% @near_spots_up_top = true %>
+
+<% if @swell_chart %>
   <div class=""> <!-- panel -->
-    <%= image_tag "http://cdip.ucsd.edu/recent/model_images/sb_channel.png" %>
+    <%= image_tag @swell_chart.url %>
   </div>
 <% end %>

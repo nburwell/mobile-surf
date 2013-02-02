@@ -1,0 +1,57 @@
+--- 
+- id: 15
+  latitude: 38.01069835
+  created_at: 2013-02-02 11:50:50.588461 Z
+  updated_at: 2013-02-02 11:50:50.588461 Z
+  longitude: -123.0033294
+  url: http://cdip.ucsd.edu/recent/model_images/sf.png
+  address: ""
+  name: ""
+- id: 16
+  latitude: 36.69171215
+  created_at: 2013-02-02 11:50:50.592444 Z
+  updated_at: 2013-02-02 11:50:50.592444 Z
+  longitude: -122.0691133
+  url: http://cdip.ucsd.edu/recent/model_images/monterey.png
+  address: ""
+  name: ""
+- id: 17
+  latitude: 35.32983365
+  created_at: 2013-02-02 11:50:50.594750 Z
+  updated_at: 2013-02-02 11:50:50.594750 Z
+  longitude: -121.01269125
+  url: http://cdip.ucsd.edu/recent/model_images/conception.png
+  address: ""
+  name: ""
+- id: 18
+  latitude: 34.38735565
+  created_at: 2013-02-02 11:50:50.596693 Z
+  updated_at: 2013-02-02 11:50:50.596693 Z
+  longitude: -119.91388895
+  url: http://cdip.ucsd.edu/recent/model_images/sb_channel.png
+  address: ""
+  name: ""
+- id: 19
+  latitude: 33.9461221
+  created_at: 2013-02-02 11:50:50.598568 Z
+  updated_at: 2013-02-02 11:50:50.598568 Z
+  longitude: -118.79106235
+  url: http://cdip.ucsd.edu/recent/model_images/santa_monica.png
+  address: ""
+  name: ""
+- id: 20
+  latitude: 33.57794825
+  created_at: 2013-02-02 11:50:50.600612 Z
+  updated_at: 2013-02-02 11:50:50.600612 Z
+  longitude: -117.93598825
+  url: http://cdip.ucsd.edu/recent/model_images/san_pedro.png
+  address: ""
+  name: ""
+- id: 21
+  latitude: 32.9245135
+  created_at: 2013-02-02 11:50:50.602622 Z
+  updated_at: 2013-02-02 11:50:50.602622 Z
+  longitude: -117.2363194
+  url: http://cdip.ucsd.edu/recent/model_images/san_diego.png
+  address: ""
+  name: ""
