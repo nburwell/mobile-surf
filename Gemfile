@@ -8,6 +8,9 @@ gem 'rails', '3.2.3'
 group :development, :test do
   gem 'sqlite3'
   gem 'system_timer'
+
+  gem 'minitest-spec-rails'
+  gem 'faraday'
 end
 
 group :production do
@@ -34,9 +37,6 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
-gem 'minitest-spec-rails'
-gem 'faraday'
 
 gem 'geocoder'
 gem 'gmaps4rails'

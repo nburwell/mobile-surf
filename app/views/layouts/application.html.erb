@@ -41,8 +41,8 @@
             <button type="submit" class="secondary radius button">Go</button>
           </form>
         </li>
-        <li><a href="#" id="feedbackLink">Feedback</a></li>
         <li><%= link_to "Meet the Team", { :controller => :team, :action => :index } %></li>
+        <li><a href="#" id="feedbackLink">Feedback</a></li>
       </ul>
     </section>
   </nav>
@@ -53,7 +53,11 @@
         <div class="location-box alert-box" style="font-size: 1.3em">
           Location: <%= session[:geo][:name] %>
           &nbsp;
-          <%= link_to "reset", { :controller => :sessions, :action => :clear }, { :style => "color: white; text-decoration: underline"} %>
+          <% if using_geo_location? %>
+            <%= link_to "refresh my location", { :controller => :sessions, :action => :clear }, { :style => "color: white; text-decoration: underline"} %>
+          <% else %>
+            <%= link_to "use my current location", { :controller => :sessions, :action => :clear }, { :style => "color: white; text-decoration: underline"} %>
+          <% end %>
         </div>
       <% else %>
         <div class="location-box alert-box secondary">

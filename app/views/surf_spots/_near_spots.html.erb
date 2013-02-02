@@ -2,9 +2,13 @@
   <h5>Surf spots near you:</h5>
 
   <ul class="nav-bar vertical">
-    <% @spots.each do |spot| %>
+    <% @markers = ('A'...'Z').to_a
+       @current_index=-1
+       @spots.each do |spot| %>
+        <% @current_index += 1 %>
+        <% @active_index  = @current_index if spot == @spot %>
       <li class="has-flyout <%= 'active' if spot == @spot %>">
-        <%= link_to "#{spot.name} <span class='mileage'>#{number_with_precision(spot.distance_to(session[:geo][:location], SurfSpotsController::MAX_DISTANCE), :precision => 1, :delimiter => ",")} mi</span>".html_safe,
+        <%= link_to "#{@markers[@current_index]}. &nbsp; #{spot.name} <span class='mileage'>#{number_with_precision(spot.distance_to(session[:geo][:location], SurfSpotsController::MAX_DISTANCE), :precision => 1, :delimiter => ",")} mi</span>".html_safe,
                     { :controller => :surf_spots, :action => :show, :id => spot.id } %>
       </li>
     <% end %>
@@ -12,14 +16,27 @@
 
     <% @markers = ('A'...'Z').to_a
        @current_index=-1
-       @json = (@spot ? @spot : @spots).to_gmaps4rails do |spot, marker|
+       if using_geo_location?
+         current_spot = SurfSpot.new(:latitude => session[:geo][:location].first, :longitude => session[:geo][:location].last)
+       end
+
+       map_spots = @spot ? [@spot] : @spots
+       map_spots << current_spot if current_spot
+       @json = map_spots.to_gmaps4rails do |spot, marker|
          @current_index += 1
+         picture_params =
+           if spot.new_record?
+             "chst=d_map_pin_letter&chld=|0000ff|000000"
+           else
+             "chst=d_map_pin_letter&chld=#{@markers[@active_index || @current_index]}|FF9966|000000"
+           end
          marker.picture({
-              :picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=#{@markers[@current_index]}|FF9966|000000",
+              :picture => "http://chart.apis.google.com/chart?#{picture_params}",
               :width   => 32,
               :height  => 32
-      })
-    end
+         })
+       end
+
     %>
 
   <% unless @hide_gmaps %>
