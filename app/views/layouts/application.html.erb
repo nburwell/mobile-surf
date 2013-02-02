@@ -25,41 +25,6 @@
 
   <script type="text/javascript">
     var locator = new Surf.Locator( <%= session[:geo].to_json.html_safe %> );
-
-    $(document).ready(function() {
-      $("#feedbackLink").click(function() {
-        $("#feedback").reveal();
-      });
-
-      $(window).resize( function(){
-        resizeMap();
-      });
-
-
-      Gmaps.map.callback = function() {
-        resizeMap();
-        $('.map_wrapper').fadeIn();
-      };
-    });
-
-    function resizeMap()
-    {
-      var width = $("#side_bar").width() - 15;
-
-      $(".map_container").width(width);
-      $("#map").width(width);
-
-      google.maps.event.trigger(Gmaps.map.map, "resize");
-      if (Gmaps.map.markers.length == 1) {
-        console.log("only one marker");
-        //only one marker, choose the zoom level you expect
-        setTimeout( function(){ Gmaps.map.map.setZoom(12); }, 100 );
-      }
-      else
-      {
-        Gmaps.map.adjustMapToBounds();
-      }
-    }
   </script>
 </head>
 <body>
@@ -69,10 +34,6 @@
       <li class="toggle-topbar"><a href="#"></a></li>
     </ul>
     <section>
-      <!--<ul class="left">-->
-        <!--<li><a href="#"></a></li>-->
-      <!--</ul>-->
-
       <ul class="right">
         <li class="search">
           <form class="collapse" action="">
@@ -88,13 +49,11 @@
 
   <div style="margin-top: .5em">
     <div class="twelve columns">
-      <%# raise session[:location].inspect %>
       <% if session[:geo] %>
         <div class="alert-box" style="font-size: 1.3em">
           Location: <%= session[:geo][:name] %>
           &nbsp;
           <%= link_to "reset", { :controller => :sessions, :action => :clear }, { :style => "color: white; text-decoration: underline"} %>
-          <!--<a href="" class="close">&times;</a>-->
         </div>
       <% else %>
         <div class="alert-box secondary">
@@ -106,26 +65,7 @@
 
   <div>
     <div class="four mobile-one columns" id="side_bar">
-      <% if @spots %>
-        <h5>Surf spots near you:</h5>
-
-        <ul class="nav-bar vertical">
-          <% @spots.each do |spot| %>
-            <li class="has-flyout <%= 'active' if spot == @spot %>"> <!-- add "active" class -->
-              <%= link_to "#{spot.name} <span class='mileage'>#{number_with_precision(spot.distance_to(session[:geo][:location], SurfSpotsController::MAX_DISTANCE), :precision => 1, :delimiter => ",")} mi</span>".html_safe,
-                          { :controller => :surf_spots, :action => :show, :id => spot.id } %>
-            </li>
-          <% end %>
-        </ul>
-
-        <% @json = @spot ? @spot.to_gmaps4rails : @spots.to_gmaps4rails %>
-
-        <% unless @hide_gmaps %>
-          <div class="map_wrapper" style="display:none">
-            <%= gmaps( "markers" => { "data" => @json } ) %>
-          </div>
-        <% end %>
-      <% end %>
+      <%= render :partial => "surf_spots/near_spots" %>
     </div>
 
     <div class="eight mobile-three columns">
@@ -133,29 +73,7 @@
     </div>
   </div>
 
-  <div id="feedback" class="reveal-modal large">
-    <h2>Give us feedback</h2>
-    <p class="lead">We want your comments.</p>
-    <form>
-      <div class="row">
-        <div class="two mobile-one columns">
-          <label class="right inline">Name:</label>
-        </div>
-        <div class="ten mobile-three columns">
-          <input type="text" placeholder="e.g. Home" class="eight" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="two mobile-one columns">
-          <label class="right inline">Comments:</label>
-        </div>
-        <div class="ten mobile-three columns">
-          <textarea class="eight" rows="6"></textarea>
-        </div>
-      </div>
-    </form>
-    <a class="close-reveal-modal">&#215;</a>
-  </div>
+  <%= render :partial => "layouts/feedback" %>
 
   <%= yield :scripts %>
 
