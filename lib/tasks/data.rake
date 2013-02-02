@@ -96,4 +96,27 @@ namespace :data do
     end
 
   end
+
+  task :save_to_yml  => :environment do
+     File.open("db/swell_charts.yml",'w') do |f|
+       f.write((SwellChart.all.map{ |v| v.attributes }).to_yaml)
+     end
+
+     File.open("db/surf_spots.yml",'w') do |f|
+       f.write((SurfSpot.all.map{ |v| v.attributes }).to_yaml)
+     end
+  end
+
+  task :load_from_yml  => :environment do
+    SwellChart.destroy_all
+    YAML::load( File.open( "db/swell_charts.yml" ) ).each do |attributes|
+      SwellChart.create!(attributes)
+    end
+
+    SurfSpot.destroy_all
+    YAML::load( File.open( "db/surf_spots.yml" ) ).each do |attributes|
+      SurfSpot.create!(attributes)
+    end
+  end
+
 end

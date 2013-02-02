@@ -1,8 +1,7 @@
 class SurfSpot < ActiveRecord::Base
-  attr_accessible :latitude, :longitude, :name, :msw_id, :msw_name, :address, :msw_widget_embed
+  attr_accessible :latitude, :longitude, :name, :msw_id, :msw_name, :address, :msw_widget_embed, :updated_at, :created_at, :id, :address
 
-
-  acts_as_gmappable
+  acts_as_gmappable :process_geocoding => false
 
   def gmaps4rails_address
     self.address
