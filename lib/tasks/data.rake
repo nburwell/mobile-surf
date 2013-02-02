@@ -48,7 +48,7 @@ namespace :data do
         :longitude1 =>	-121.807976,
       },
       {
-        :url => "http://cdip.ucsd.edu/?nav=recent&sub=nowcast&units=metric&tz=UTC&pub=public&map_stati=1,2,3&xitem=conception",
+        :url => "http://cdip.ucsd.edu/recent/model_images/conception.png",
         :latitude0	=>	36.0205172,
         :longitude0	 =>	-121.5674416,
         :latitude1	 =>	34.6391501,
