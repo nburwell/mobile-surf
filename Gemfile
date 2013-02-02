@@ -7,6 +7,7 @@ gem 'rails', '3.2.3'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'system_timer'
 end
 
 gem 'json'
@@ -31,7 +32,7 @@ gem 'jquery-rails'
 
 gem 'minitest-spec-rails'
 gem 'faraday'
-gem 'system_timer'
+
 gem 'geocoder'
 gem 'gmaps4rails'
 
