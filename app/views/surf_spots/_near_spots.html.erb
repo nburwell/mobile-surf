@@ -10,9 +10,12 @@
     <% end %>
   </ul>
 
-    <% @json = (@spot ? @spot : @spots).to_gmaps4rails do |spot, marker|
-      marker.picture({
-              :picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|FF9966|000000", # up to you to pass the proper parameters in the url, I guess with a method from device
+    <% @markers = ('A'...'Z').to_a
+       @current_index=-1
+       @json = (@spot ? @spot : @spots).to_gmaps4rails do |spot, marker|
+         @current_index += 1
+         marker.picture({
+              :picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=#{@markers[@current_index]}|FF9966|000000",
               :width   => 32,
               :height  => 32
       })
