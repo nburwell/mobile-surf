@@ -64,13 +64,23 @@
   </div>
 
   <div>
-    <div class="four mobile-one columns" id="side_bar">
-      <%= render :partial => "surf_spots/near_spots" %>
-    </div>
+    <% if @near_spots_up_top %>
+      <div class="four mobile-one columns" id="side_bar">
+        <%= render :partial => "surf_spots/near_spots" %>
+      </div>
 
-    <div class="eight mobile-three columns">
-      <%= yield %>
-    </div>
+      <div class="eight mobile-three columns">
+        <%= yield %>
+      </div>
+    <% else %>
+      <div class="push-four eight mobile-three columns">
+        <%= yield %>
+      </div>
+
+      <div class="pull-eight four mobile-one columns" id="side_bar">
+        <%= render :partial => "surf_spots/near_spots" %>
+      </div>
+    <% end %>
   </div>
 
   <%= render :partial => "layouts/feedback" %>

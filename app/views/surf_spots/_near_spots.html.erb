@@ -3,7 +3,7 @@
 
   <ul class="nav-bar vertical">
     <% @spots.each do |spot| %>
-      <li class="has-flyout <%= 'active' if spot == @spot %>"> <!-- add "active" class -->
+      <li class="has-flyout <%= 'active' if spot == @spot %>">
         <%= link_to "#{spot.name} <span class='mileage'>#{number_with_precision(spot.distance_to(session[:geo][:location], SurfSpotsController::MAX_DISTANCE), :precision => 1, :delimiter => ",")} mi</span>".html_safe,
                     { :controller => :surf_spots, :action => :show, :id => spot.id } %>
       </li>
