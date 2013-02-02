@@ -50,16 +50,18 @@
   <div style="margin-top: .5em">
     <div class="twelve columns">
       <% if session[:geo] %>
-        <div class="alert-box" style="font-size: 1.3em">
+        <div class="location-box alert-box" style="font-size: 1.3em">
           Location: <%= session[:geo][:name] %>
           &nbsp;
           <%= link_to "reset", { :controller => :sessions, :action => :clear }, { :style => "color: white; text-decoration: underline"} %>
         </div>
       <% else %>
-        <div class="alert-box secondary">
+        <div class="location-box alert-box secondary">
           Getting your current location...
         </div>
       <% end %>
+
+      <div class="location-box-error alert-box alert" style="display: none"></div>
     </div>
   </div>
 

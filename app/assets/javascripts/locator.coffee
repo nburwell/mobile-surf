@@ -19,9 +19,10 @@ class Surf.Locator
       $(window).resize =>
         this.resizeMap()
 
-      Gmaps.map.callback = =>
-        this.resizeMap()
-        $('.map_wrapper').fadeIn()
+      if Gmaps.map
+        Gmaps.map.callback = =>
+          this.resizeMap()
+          $('.map_wrapper').fadeIn()
 
   resizeMap: =>
     width = $("#side_bar").width() - 15
@@ -29,13 +30,14 @@ class Surf.Locator
     $(".map_container").width(width)
     $("#map").width(width)
 
-    google.maps.event.trigger(Gmaps.map.map, "resize")
-    if (Gmaps.map.markers.length == 1)
-      setTimeout ->
-        Gmaps.map.map.setZoom(12);
-      , 100
-    else
-      Gmaps.map.adjustMapToBounds();
+    if typeof "google" != undefined && google.maps
+      google.maps.event.trigger(Gmaps.map.map, "resize")
+      if (Gmaps.map.markers.length == 1)
+        setTimeout ->
+          Gmaps.map.map.setZoom(12);
+        , 100
+      else
+        Gmaps.map.adjustMapToBounds();
 
 
   success: (position) ->
@@ -48,5 +50,12 @@ class Surf.Locator
     window.location = window.location + "?location[]=" + @pos.latitude + "&location[]=" + @pos.longitude
 
   error: (err) ->
-    console.log("Error callback #{err.message}")
-    console.log(msg)
+    console.log(err)
+    $('.location-box').hide();
+
+    if err.code && err.code == err.PERMISSION_DENIED
+      msg = "You did not give us your location. Please manually search for an address near you."
+    else
+      msg = err.message
+
+    $('.location-box-error').text(msg).fadeIn();
