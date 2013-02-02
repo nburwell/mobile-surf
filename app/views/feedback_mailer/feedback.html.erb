@@ -4,7 +4,7 @@
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 </head>
 <body>
-  <h2>Feedback received from user at <%= Time.now.to_s(:long) %></h2>
+  <h2>Feedback received from user</h2>
 
   <b>Name:</b><br />
   <%= @name %>
@@ -12,6 +12,11 @@
   <br /><br />
 
   <b>Comment:</b><br />
-  <%= @comment %>
+  <%= @comment.gsub(/\n/, '<br />').html_safe %>
+
+  <br /><br />
+
+  <b>Viewing the following page:</b>
+  <%= @page %>
 </body>
 </html>
