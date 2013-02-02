@@ -5,7 +5,8 @@ class SurfSpotsController < ApplicationController
     reset_session
 
     if params[:location]
-      session[:geo] = { :name => "Santa Barbara, CA", :location => params[:location] }
+      location_name = Geocoder.search(params[:location]).first.address
+      session[:geo] = { :name => location_name, :location => params[:location] }
     end
 
     if session[:geo]
