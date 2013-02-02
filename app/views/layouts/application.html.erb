@@ -76,6 +76,8 @@
           <% @spots.each do |spot| %>
             <li class=""> <!-- add "active" class -->
               <%= link_to spot.name, { :controller => :surf_spots, :action => :show, :id => spot.id } %>
+              <br />
+              <%= spot.distance_to session[:geo][:location], SurfSpotsController::MAX_DISTANCE %>
             </li>
           <% end %>
         </ul>
