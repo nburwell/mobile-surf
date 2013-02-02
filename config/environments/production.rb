@@ -12,7 +12,7 @@ Hackathon2013b::Application.configure do
   config.serve_static_assets = false
 
   config.assets.initialize_on_precompile = false
-  
+
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
