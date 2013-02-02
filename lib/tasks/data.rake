@@ -11,8 +11,8 @@ namespace :data do
 
     SURF_SPOTS.each do |lat, long, name, msw_id, msw_name|
       SurfSpot.create!(
-        :lat => lat,
-        :long => long,
+        :latitude => lat,
+        :longitude => long,
         :name => name,
         :msw_id => msw_id,
         :msw_name => msw_name
