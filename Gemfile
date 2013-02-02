@@ -31,6 +31,8 @@ gem 'minitest-spec-rails'
 gem 'faraday'
 gem 'system_timer'
 gem 'geocoder'
+gem 'gmaps4rails'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
