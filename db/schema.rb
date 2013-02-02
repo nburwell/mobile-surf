@@ -13,11 +13,12 @@
 ActiveRecord::Schema.define(:version => 20130202043649) do
 
   create_table "surf_spots", :force => true do |t|
-    t.string   "lat"
-    t.string   "long"
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "name"
     t.string   "msw_id"
     t.string   "msw_name"
+    t.string   "address"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
