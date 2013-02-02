@@ -60,6 +60,10 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
+    minitest (4.5.0)
+    minitest-spec-rails (4.3.6)
+      minitest (~> 4.3)
+      rails (>= 3.0)
     modular-scale (1.0.6)
       compass (>= 0.12.1)
       sass (>= 3.2.0)
@@ -126,6 +130,7 @@ DEPENDENCIES
   compass-rails
   jquery-rails
   json
+  minitest-spec-rails
   rails (= 3.2.3)
   sass-rails (~> 3.2.3)
   sqlite3
