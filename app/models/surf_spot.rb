@@ -1,13 +1,20 @@
 class SurfSpot < ActiveRecord::Base
-  attr_accessible :lat, :long, :name, :msw_id, :msw_name
-
-  def self.find_by_lat_long( lat, long )
-    SurfSpot.all(:limit=>3)
-  end
+  attr_accessible :latitude, :longitude, :name, :msw_id, :msw_name, :address
 
   def msw_widget_embed
     msw_widget_embed_template % [ msw_name, msw_id, name ]
   end
+
+
+  cattr_accessor :user_location
+
+  geocoded_by :address
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :geocode
+  after_validation :reverse_geocode
+
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :reverse_geocode  # auto-fetch address
 
   private
 
