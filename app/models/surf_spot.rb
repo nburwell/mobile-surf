@@ -5,6 +5,11 @@ class SurfSpot < ActiveRecord::Base
     msw_widget_embed_template % [ msw_name, msw_id, name ]
   end
 
+  acts_as_gmappable
+
+  def gmaps4rails_address
+    self.address
+  end
 
   cattr_accessor :user_location
 

@@ -81,6 +81,10 @@
             </li>
           <% end %>
         </ul>
+
+      <% @json = @spots.to_gmaps4rails %>
+      <%= gmaps4rails(@json) %>
+
       <% end %>
     </div>
 
@@ -88,5 +92,6 @@
       <%= yield %>
     </div>
   </div>
+  <%= yield :scripts %>
 </body>
 </html>
