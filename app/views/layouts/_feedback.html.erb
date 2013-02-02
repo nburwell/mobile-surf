@@ -1,7 +1,7 @@
 <div id="feedback" class="reveal-modal large">
   <h2>Give us feedback!</h2>
   <p class="lead">We want a wave of comments.</p>
-  <form>
+  <form action="/sessions/feedback" method="post">
     <div class="row">
       <div class="two mobile-four columns">
         <label class="right inline">Name:</label>
@@ -21,7 +21,7 @@
     <div class="row">
       <div class="two mobile-one columns"></div>
       <div class="ten mobile-three columns">
-        <a class="close-reveal-modal success button" href="#">Send</a>
+        <input type="submit" class="success button" value="Send">
       </div>
     </div>
   </form>
