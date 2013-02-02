@@ -1,0 +1,11 @@
+<h1><%= @spot.name %></h1>
+<h5>Directions</h5>
+
+<% @hide_gmaps = true %>
+<%=
+    gmaps({ "direction" => {
+            "data"    => { "from" => "toulon, france", "to" => "paris, france"} ,
+            "options" => {"waypoints" => ["toulouse, france", "brest, france"], "display_panel" => true, "panel_id" => "instructions"}
+    }
+          })
+%>

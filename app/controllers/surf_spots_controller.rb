@@ -13,8 +13,8 @@ class SurfSpotsController < ApplicationController
     @spot = SurfSpot.find(params[:id])
   end
 
-  def reset
-    reset_session
+  def directions
+    @spot = SurfSpot.find(params[:id])
   end
 
   private

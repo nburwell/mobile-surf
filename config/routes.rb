@@ -13,7 +13,13 @@ Hackathon2013b::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   match 'sessions/clear' => 'sessions#clear'
 
-  resources :surf_spots, :team
+  resources :surf_spots do
+    member do
+      get 'directions'
+    end
+  end
+
+  resources :team
 
 
 

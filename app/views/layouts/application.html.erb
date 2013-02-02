@@ -50,7 +50,15 @@
       $("#map").width(width);
 
       google.maps.event.trigger(Gmaps.map.map, "resize");
-      Gmaps.map.adjustMapToBounds();
+      if (Gmaps.map.markers.length == 1) {
+        console.log("only one marker");
+        //only one marker, choose the zoom level you expect
+        setTimeout( function(){ Gmaps.map.map.setZoom(12); }, 100 );
+      }
+      else
+      {
+        Gmaps.map.adjustMapToBounds();
+      }
     }
   </script>
 </head>
@@ -68,7 +76,7 @@
       <ul class="right">
         <li class="search">
           <form class="collapse" action="">
-            <input type="text" placeholder="Address..." name="location" value="<%= %>">
+            <input type="text" placeholder="Address..." name="location" size="40">
             <button type="submit" class="secondary radius button">Go</button>
           </form>
         </li>
@@ -110,13 +118,14 @@
           <% end %>
         </ul>
 
+        <% @json = @spot ? @spot.to_gmaps4rails : @spots.to_gmaps4rails %>
+
+        <% unless @hide_gmaps %>
+          <div class="map_wrapper" style="display:none">
+            <%= gmaps( "markers" => { "data" => @json } ) %>
+          </div>
+        <% end %>
       <% end %>
-
-      <% @json = (@spots || []).to_gmaps4rails %>
-
-      <div class="map_wrapper" style="display:none">
-        <%= gmaps( "markers" => { "data" => @json } ) %>
-      </div>
     </div>
 
     <div class="eight mobile-three columns">
