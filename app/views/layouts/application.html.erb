@@ -64,7 +64,11 @@
   </div>
 
   <div>
-    <% if @near_spots_up_top %>
+    <% if @full_width %>
+      <div class="twelve mobile-three columns">
+        <%= yield %>
+      </div>
+    <% elsif @near_spots_up_top %>
       <div class="four mobile-one columns" id="side_bar">
         <%= render :partial => "surf_spots/near_spots" %>
       </div>
