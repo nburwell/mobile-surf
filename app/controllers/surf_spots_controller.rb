@@ -1,4 +1,6 @@
 class SurfSpotsController < ApplicationController
+  MAX_DISTANCE = 100000
+
   def index
     reset_session
 
@@ -7,7 +9,7 @@ class SurfSpotsController < ApplicationController
     end
 
     if session[:geo]
-      @spots = SurfSpot.find_by_lat_long( session[:latitude], session[:longitude] )
+      @spots = SurfSpot.near( session[:geo][:location], MAX_DISTANCE )
     end
   end
 
