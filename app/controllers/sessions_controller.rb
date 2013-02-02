@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def feedback
     FeedbackMailer.feedback(params[:name], params[:comment]).deliver
-    
+
     render :json => { :success => true }
   end
 end

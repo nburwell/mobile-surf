@@ -21,8 +21,8 @@ class SurfSpotsController < ApplicationController
 
   def find_spots
     if !params[:location].blank?
-      location_name = Geocoder.search(params[:location]).first.address
-      session[:geo] = { :name => location_name, :location => params[:location] }
+      location_name = Geocoder.search(params[:location]).first.try(:address)
+      session[:geo] = { :name => location_name, :location => params[:location] } if location_name
     end
 
     if session[:geo]

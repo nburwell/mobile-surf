@@ -1,13 +1,24 @@
 <div id="feedback" class="reveal-modal large">
   <h2>Give us feedback!</h2>
   <p class="lead">We want a wave of comments.</p>
-  <form action="/sessions/feedback" method="post">
+  <script>
+    function send_form( form )
+    {
+      $.post( $(form).attr('action'), // url
+              $(form).serialize()     // data
+      );
+
+      $('input[type=submit]').hide();
+      $('#form_sent').fadeIn();
+    }
+  </script>
+  <form action="/sessions/feedback" method="post" onsubmit="send_form(this); return false;">
     <div class="row">
       <div class="two mobile-four columns">
         <label class="right inline">Name:</label>
       </div>
       <div class="ten mobile-four columns">
-        <input type="text" placeholder="" class="eight" />
+        <input type="text" placeholder="" class="eight" name="name" />
       </div>
     </div>
     <div class="row">
@@ -15,13 +26,19 @@
         <label class="right inline">Comments:</label>
       </div>
       <div class="ten mobile-four columns">
-        <textarea class="eight" rows="6"></textarea>
+        <textarea class="eight" rows="6" name="comment"></textarea>
       </div>
     </div>
     <div class="row">
       <div class="two mobile-one columns"></div>
       <div class="ten mobile-three columns">
         <input type="submit" class="success button" value="Send">
+
+        <div id="form_sent" style="display:none">
+          Thanks, your feedback has been sent!
+          &nbsp;
+          <a class="close-reveal-modal secondary button small">Close</a>
+        </div>
       </div>
     </div>
   </form>

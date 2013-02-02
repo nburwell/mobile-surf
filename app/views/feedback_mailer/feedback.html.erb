@@ -1,9 +1,17 @@
-<h2>Feedback received from user at <%= Time.now.to_s %></h2>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+  <h2>Feedback received from user at <%= Time.now.to_s(:long) %></h2>
 
-<b>Name:</b><br />
-<%= @name %>
+  <b>Name:</b><br />
+  <%= @name %>
 
-<br /><br />
+  <br /><br />
 
-<b>Comment:</b><br />
-<%= @comment %>
+  <b>Comment:</b><br />
+  <%= @comment %>
+</body>
+</html>

@@ -1,6 +1,6 @@
 class FeedbackMailer < ActionMailer::Base
   # layout 'email'
-  default :from => "notifications@mustsurfnow.com"
+  default :from => "'MustSurfNow.com' <notifications@mustsurfnow.com>"
 
   def feedback(name, comment)
     @name    = name
