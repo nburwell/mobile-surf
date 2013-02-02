@@ -47,6 +47,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.8.4)
+      multipart-post (~> 1.1)
     fssm (0.2.10)
     hike (1.2.1)
     i18n (0.6.1)
@@ -69,6 +71,7 @@ GEM
       sass (>= 3.2.0)
       sassy-math (>= 1.5)
     multi_json (1.5.0)
+    multipart-post (1.1.5)
     polyglot (0.3.3)
     rack (1.4.4)
     rack-cache (1.2)
@@ -128,6 +131,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails
+  faraday
   jquery-rails
   json
   minitest-spec-rails
